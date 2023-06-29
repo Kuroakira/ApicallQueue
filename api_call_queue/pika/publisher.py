@@ -2,7 +2,7 @@ import pika
 import json
 
 class ApiCallQueuePublisher:
-    def __init__(self, pika_param:pika.ConnectionParameters, api_url:str, http_method:str,
+    def __init__(self, pika_param:pika.ConnectionParameters, api_url:str, http_method:HttpMethodType,
                  queue_name:str, is_passive:bool=True):
         self._api_url = api_url
         self._http_method = http_method

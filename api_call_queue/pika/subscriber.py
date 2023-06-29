@@ -23,7 +23,7 @@ class BaseApiCallQueueSubscriber(metaclass=ABCMeta):
         http_method = message["http_method"]
         contents = message["contents"]
 
-        if http_method == "get":
+        if http_method == HttpMethodType.GET:
             response = requests.get(api_url)
         else:
             response = requests.post(api_url, data=contents)
@@ -34,6 +34,6 @@ class BaseApiCallQueueSubscriber(metaclass=ABCMeta):
     def run(self):
         self._channel.start_consuming()
 
-class SampleApiCallQueueSubscriber(BaseApiCallQueueSubscriber):
+class SimpleApiCallQueueSubscriber(BaseApiCallQueueSubscriber):
     def core(self, api_url:str, contents:dict, response:requests.Session):
-        print(api_url, contents, response)
+        pass
