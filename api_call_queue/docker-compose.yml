@@ -1,0 +1,15 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.12.0-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    # ユーザ名/パスワードの設定
+    # 特に設定しない場合、guest/guestが暗黙的に設定される
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=password
+    # データの永続化
+    volumes:
+      - ./docker/rabbitmq/data:/var/lib/rabbitmq
